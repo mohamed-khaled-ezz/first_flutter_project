@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/custom_text_field.dart';
@@ -23,6 +24,8 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController confirmPasswordController =
       TextEditingController();
 
+  bool isLoading = false;
+
   @override
   void dispose() {
     // Clean up controllers when the widget is disposed
@@ -34,30 +37,40 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   /// Handles account creation logic and shows success dialog
-  void createAccount() {
+  Future<void> createAccount() async {
     final l10n = AppLocalizations.of(context)!;
     if (_formKey.currentState!.validate()) {
-      showDialog(
-        context: context,
-        barrierDismissible: false,
-        builder: (context) {
-          return AlertDialog(
-            title: Text(l10n.success),
-            content: Text(l10n.accountCreated),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  // Phase 5: Fade transition to Shopping Screen
-                  Navigator.pushReplacement(
-                    context,
-                    PageRouteBuilder(
-                      transitionDuration: const Duration(milliseconds: 600),
-                      pageBuilder: (context, animation, secondaryAnimation) {
-                        return const ShoppingScreen();
-                      },
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) {
+      setState(() {
+        isLoading = true;
+      });
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        );
+
+        if (mounted) {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) {
+              return AlertDialog(
+                title: Text(l10n.success),
+                content: Text(l10n.accountCreated),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                      // Phase 5: Fade transition to Shopping Screen
+                      Navigator.pushReplacement(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: const Duration(milliseconds: 600),
+                          pageBuilder: (context, animation, secondaryAnimation) {
+                            return const ShoppingScreen();
+                          },
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
                             return FadeTransition(
                               opacity: CurvedAnimation(
                                 parent: animation,
@@ -66,15 +79,37 @@ class _SignUpPageState extends State<SignUpPage> {
                               child: child,
                             );
                           },
-                    ),
-                  );
-                },
-                child: Text(l10n.ok),
-              ),
-            ],
+                        ),
+                      );
+                    },
+                    child: Text(l10n.ok),
+                  ),
+                ],
+              );
+            },
           );
-        },
-      );
+        }
+      } on FirebaseAuthException catch (e) {
+        String message;
+        if (e.code == 'weak-password') {
+          message = l10n.errorWeakPassword;
+        } else if (e.code == 'email-already-in-use') {
+          message = l10n.errorEmailAlreadyInUse;
+        } else {
+          message = e.message ?? "An error occurred";
+        }
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(message)),
+          );
+        }
+      } finally {
+        if (mounted) {
+          setState(() {
+            isLoading = false;
+          });
+        }
+      }
     }
   }
 
@@ -191,7 +226,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 width: double.infinity,
                 height: 55,
                 child: ElevatedButton(
-                  onPressed: createAccount,
+                  onPressed: isLoading ? null : createAccount,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.deepPurple,
                     foregroundColor: Colors.white,
@@ -199,13 +234,22 @@ class _SignUpPageState extends State<SignUpPage> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: Text(
-                    l10n.signUp,
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  child: isLoading
+                      ? const SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                            strokeWidth: 2,
+                          ),
+                        )
+                      : Text(
+                          l10n.signUp,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                 ),
               ),
               const SizedBox(height: 20),

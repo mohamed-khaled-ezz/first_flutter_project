@@ -1,9 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:first_flutter_project/firebase_options.dart';
 import 'package:first_flutter_project/screens/on_bording.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'l10n/app_localizations.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

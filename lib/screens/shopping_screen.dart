@@ -1,3 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:first_flutter_project/screens/firestore_form_screen.dart';
+import 'package:first_flutter_project/screens/on_bording.dart';
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 import '../widgets/product_card.dart';
@@ -31,6 +34,16 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
         duration: const Duration(seconds: 2),
       ),
     );
+  }
+
+  void logout() async {
+    await FirebaseAuth.instance.signOut();
+    if (mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const OnBording()),
+      );
+    }
   }
 
   @override
@@ -138,6 +151,10 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
             onPressed: () {},
             icon: const Icon(Icons.shopping_cart_outlined),
           ),
+          IconButton(
+            onPressed: logout,
+            icon: const Icon(Icons.logout),
+          ),
         ],
       ),
       // Requirement: Entire page must be vertically scrollable
@@ -229,6 +246,16 @@ class _ShoppingScreenState extends State<ShoppingScreen> {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const FirestoreFormScreen()),
+          );
+        },
+        backgroundColor: Colors.deepPurple,
+        child: const Icon(Icons.add, color: Colors.white),
       ),
     );
   }

@@ -140,4 +140,59 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get controllerDescription =>
       'Better control, better gaming experience';
+
+  @override
+  String get login => 'Login';
+
+  @override
+  String get loginTitle => 'Login to Your Account';
+
+  @override
+  String get dontHaveAccount => 'Don\'t have an account? Sign Up';
+
+  @override
+  String get signIn => 'Sign In';
+
+  @override
+  String get userDataForm => 'User Data Form';
+
+  @override
+  String get age => 'Age';
+
+  @override
+  String get ageHint => 'Enter your age';
+
+  @override
+  String get hobby => 'Favourite Hobby';
+
+  @override
+  String get hobbyHint => 'Enter your favourite hobby';
+
+  @override
+  String get save => 'Save';
+
+  @override
+  String get viewRecords => 'View Records';
+
+  @override
+  String get userRecords => 'User Records';
+
+  @override
+  String get noData => 'No data available';
+
+  @override
+  String get loading => 'Loading...';
+
+  @override
+  String get errorWrongPassword => 'Wrong password provided for that user.';
+
+  @override
+  String get errorUserNotFound => 'No user found for that email.';
+
+  @override
+  String get errorWeakPassword => 'The password provided is too weak.';
+
+  @override
+  String get errorEmailAlreadyInUse =>
+      'The account already exists for that email.';
 }

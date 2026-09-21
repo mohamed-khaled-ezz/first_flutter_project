@@ -1,4 +1,4 @@
-import 'package:first_flutter_project/screens/sign_up_screen.dart';
+import 'package:first_flutter_project/screens/login_screen.dart';
 import 'package:first_flutter_project/widgets/custom_network_image.dart';
 import 'package:first_flutter_project/widgets/language_icon_button.dart';
 import 'package:flutter/material.dart';
@@ -52,13 +52,13 @@ class OnBording extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          // Button to navigate to the Sign Up page
+          // Button to navigate to the Login page
           MaterialButton(
             clipBehavior: Clip.antiAliasWithSaveLayer,
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const SignUpPage()),
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
               );
             },
             color: Colors.blue,

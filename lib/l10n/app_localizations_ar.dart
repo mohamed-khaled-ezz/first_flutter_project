@@ -140,4 +140,58 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get controllerDescription => 'تحكم أفضل، تجربة ألعاب أفضل';
+
+  @override
+  String get login => 'تسجيل الدخول';
+
+  @override
+  String get loginTitle => 'تسجيل الدخول إلى حسابك';
+
+  @override
+  String get dontHaveAccount => 'ليس لديك حساب؟ إنشاء حساب';
+
+  @override
+  String get signIn => 'دخول';
+
+  @override
+  String get userDataForm => 'نموذج بيانات المستخدم';
+
+  @override
+  String get age => 'العمر';
+
+  @override
+  String get ageHint => 'أدخل عمرك';
+
+  @override
+  String get hobby => 'الهواية المفضلة';
+
+  @override
+  String get hobbyHint => 'أدخل هوايتك المفضلة';
+
+  @override
+  String get save => 'حفظ';
+
+  @override
+  String get viewRecords => 'عرض السجلات';
+
+  @override
+  String get userRecords => 'سجلات المستخدمين';
+
+  @override
+  String get noData => 'لا توجد بيانات متاحة';
+
+  @override
+  String get loading => 'جاري التحميل...';
+
+  @override
+  String get errorWrongPassword => 'كلمة المرor خاطئة.';
+
+  @override
+  String get errorUserNotFound => 'لا يوجد مستخدم بهذا البريد.';
+
+  @override
+  String get errorWeakPassword => 'كلمة المرور ضعيفة جداً.';
+
+  @override
+  String get errorEmailAlreadyInUse => 'هذا الحساب موجود بالفعل.';
 }

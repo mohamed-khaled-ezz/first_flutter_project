@@ -361,6 +361,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Better control, better gaming experience'**
   String get controllerDescription;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
+
+  /// No description provided for @loginTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Login to Your Account'**
+  String get loginTitle;
+
+  /// No description provided for @dontHaveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t have an account? Sign Up'**
+  String get dontHaveAccount;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign In'**
+  String get signIn;
+
+  /// No description provided for @userDataForm.
+  ///
+  /// In en, this message translates to:
+  /// **'User Data Form'**
+  String get userDataForm;
+
+  /// No description provided for @age.
+  ///
+  /// In en, this message translates to:
+  /// **'Age'**
+  String get age;
+
+  /// No description provided for @ageHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your age'**
+  String get ageHint;
+
+  /// No description provided for @hobby.
+  ///
+  /// In en, this message translates to:
+  /// **'Favourite Hobby'**
+  String get hobby;
+
+  /// No description provided for @hobbyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your favourite hobby'**
+  String get hobbyHint;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @viewRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'View Records'**
+  String get viewRecords;
+
+  /// No description provided for @userRecords.
+  ///
+  /// In en, this message translates to:
+  /// **'User Records'**
+  String get userRecords;
+
+  /// No description provided for @noData.
+  ///
+  /// In en, this message translates to:
+  /// **'No data available'**
+  String get noData;
+
+  /// No description provided for @loading.
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// No description provided for @errorWrongPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong password provided for that user.'**
+  String get errorWrongPassword;
+
+  /// No description provided for @errorUserNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'No user found for that email.'**
+  String get errorUserNotFound;
+
+  /// No description provided for @errorWeakPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'The password provided is too weak.'**
+  String get errorWeakPassword;
+
+  /// No description provided for @errorEmailAlreadyInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'The account already exists for that email.'**
+  String get errorEmailAlreadyInUse;
 }
 
 class _AppLocalizationsDelegate
